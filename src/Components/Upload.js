@@ -1,0 +1,46 @@
+import React from "react";
+import axios from "axios";
+
+export default function Upload() {
+  const [uploadFile, setUploadFile] = React.useState();
+  const [superHero, setSuperHero] = React.useState();
+  
+  const submitForm = (event) => {
+    event.preventDefault();
+
+    const dataArray = new FormData();
+    dataArray.append("superHeroName", superHero);
+    dataArray.append("uploadFile", uploadFile);
+
+    axios
+      .post("api_url_here", dataArray, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then((response) => {
+        "Success, You have uploaded your file!"
+        // successfully uploaded response
+      })
+      .catch((error) => {
+        "Oops, that didn't work. Try again please."
+        // error response
+      });
+  };
+
+  return (
+    <div>
+      <form onSubmit={submitForm}>
+        <input
+          type="text"
+          onChange={(e) => setSuperHero(e.target.value)}
+          placeholder={"File Name"}
+        />
+        <br />
+        <input type="file" onChange={(e) => setUploadFile(e.target.files)} />
+        <br />
+        <input type="submit" />
+      </form>
+    </div>
+  );
+}
