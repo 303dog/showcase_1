@@ -1,6 +1,9 @@
 .wrapper {
-  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
   color: green;
+  
 }
 
 .App-header {
