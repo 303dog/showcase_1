@@ -4,38 +4,70 @@ import React from 'react';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-    
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      customer: {
+        firstName: props.firstName,
+        lastName: props.lastName,
+        status: props.status
+      }
+    }
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-    this.setState({value: event.target.value});
+  handleFirstNameChanged(event) {
+    var customer        = this.state.customer;
+    customer.firstName  = event.target.value;
+
+    this.setState({ customer: customer });
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+  handleLastNameChanged(event) {
+    var customer      = this.state.customer;
+    customer.lastName = event.target.value;
+
+    this.setState({ customer: customer });
+  }
+
+  handleStatusChanged(event) {
+    var customer    = this.state.customer;
+    customer.status = event.target.value;
+
+    this.setState({ customer: customer });
+  }
+
+  handleButtonClicked() {
+    console.log(this.state.customer);
   }
 
   render() {
-    console.log(this.state)
-    return (
-      <form onSubmit={this.handleSubmit}>
+    return  (
+      <div>
         <label>
-          Name:
-          <input type="name" value={this.state.value.name} onChange={this.handleChange} />
+          First Name: 
         </label>
-        
-          <li type='item' value={this.state.value} onChange={this.handleChange}>item:</li>
-          <li>item:</li>
-        
-        <input type="submit" value="Submit" />
-        <div>{this.state.value}</div>
-      </form>
+        <input type="text" value={this.state.customer.firstName} onChange={this.handleFirstNameChanged.bind(this)}/>
+        <br/>
+        <label>
+          Last Name:
+        </label>
+        <input type="text" value={this.state.customer.lastName} onChange={this.handleLastNameChanged.bind(this)}/>
+        <br/>
+        <label>
+          Status:
+        </label>
+        <select value={this.state.customer.status} onChange={this.handleStatusChanged.bind(this)}>
+          <option value="PENDING">
+            Pending
+          </option>
+          <option value="APPROVED">
+            Approved
+          </option>
+        </select>
+        <hr/>
+        <button onClick={this.handleButtonClicked.bind(this)}>
+          Save Record
+        </button>
+      </div>
     );
   }
 }
