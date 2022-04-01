@@ -6,67 +6,133 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      customer: {
-        firstName: props.firstName,
-        lastName: props.lastName,
-        status: props.status
+      recipe_book: {
+        title: props.title,
+        recipe: props.recipe,
+        measure: props.measure,
+        ingredients: props.ingredients
       }
     }
   }
 
-  handleFirstNameChanged(event) {
-    var customer        = this.state.customer;
-    customer.firstName  = event.target.value;
+  handleTitleChanged(event) {
+    var recipe_book        = this.state.recipe_book;
+    recipe_book.title  = event.target.value;
 
-    this.setState({ customer: customer });
+    this.setState({ recipe_book: recipe_book });
   }
 
-  handleLastNameChanged(event) {
-    var customer      = this.state.customer;
-    customer.lastName = event.target.value;
+  handleRecipeChanged(event) {
+    var recipe_book      = this.state.recipe_book;
+    recipe_book.recipe = event.target.value;
 
-    this.setState({ customer: customer });
+    this.setState({ recipe_book: recipe_book });
   }
 
-  handleStatusChanged(event) {
-    var customer    = this.state.customer;
-    customer.status = event.target.value;
+  handleMeasureChanged(event) {
+    var recipe_book    = this.state.recipe_book;
+    recipe_book.measure = event.target.value;
 
-    this.setState({ customer: customer });
+    this.setState({ recipe_book: recipe_book });
+  }
+
+  handleIngredientsChanged(event) {
+    var recipe_book    = this.state.recipe_book;
+    recipe_book.ingredients = event.target.value;
+
+    this.setState({ recipe_book: recipe_book });
   }
 
   handleButtonClicked() {
-    console.log(this.state.customer);
+    console.log(this.state.recipe_book);
   }
 
   render() {
     return  (
       <div>
         <label>
-          First Name: 
+          Title: 
         </label>
-        <input type="text" value={this.state.customer.firstName} onChange={this.handleFirstNameChanged.bind(this)}/>
+        <input type="text" value={this.state.recipe_book.title} onChange={this.handleTitleChanged.bind(this)}/>
         <br/>
         <label>
-          Last Name:
+          Recipe:
         </label>
-        <input type="text" value={this.state.customer.lastName} onChange={this.handleLastNameChanged.bind(this)}/>
+        <input type="text" value={this.state.recipe_book.recipe} onChange={this.handleRecipeChanged.bind(this)}/>
         <br/>
-        <label>
-          Status:
+       
+        <label value={this.state.recipe_book.ingredients} onChange={this.handleIngredientsChanged.bind(this)}>
+          Ingredient:
         </label>
-        <select value={this.state.customer.status} onChange={this.handleStatusChanged.bind(this)}>
-          <option value="PENDING">
-            Pending
+        <input type="text" value={this.state.recipe_book.ingredients} onChange={this.handleIngredientsChanged.bind(this)}/>
+        <select value={this.state.recipe_book.measure} onChange={this.handleMeasureChanged.bind(this)}>
+          <option value="1/4c">
+            1/4c
           </option>
-          <option value="APPROVED">
-            Approved
+          <option value="1/2c">
+            1/2c
+          </option>
+          <option value="3/4c">
+            3/4c
+          </option>
+          <option value="1c">
+            1c
+          </option>
+          <option value="1 1/4c">
+            1 1/4c
           </option>
         </select>
+        <label value={this.state.recipe_book.ingredients} onChange={this.handleIngredientsChanged.bind(this)}>
+          Ingredient:
+        </label>
+        <input type="text" value={this.state.recipe_book.ingredients} onChange={this.handleIngredientsChanged.bind(this)}/>
+        <select value={this.state.recipe_book.measure} onChange={this.handleMeasureChanged.bind(this)}>
+          <option value="1/4c">
+            1/4c
+          </option>
+          <option value="1/2c">
+            1/2c
+          </option>
+          <option value="3/4c">
+            3/4c
+          </option>
+          <option value="1c">
+            1c
+          </option>
+          <option value="1 1/4c">
+            1 1/4c
+          </option>
+        </select>
+        <label value={this.state.recipe_book.ingredients} onChange={this.handleIngredientsChanged.bind(this)}>
+          Ingredient:
+        </label>
+        <input type="text" value={this.state.recipe_book.ingredients} onChange={this.handleIngredientsChanged.bind(this)}/>
+        <select value={this.state.recipe_book.measure} onChange={this.handleMeasureChanged.bind(this)}>
+          <option value="1/4c">
+            1/4c
+          </option>
+          <option value="1/2c">
+            1/2c
+          </option>
+          <option value="3/4c">
+            3/4c
+          </option>
+          <option value="1c">
+            1c
+          </option>
+          <option value="1 1/4c">
+            1 1/4c
+          </option>
+        </select>
+
+        <br/>
+        
         <hr/>
         <button onClick={this.handleButtonClicked.bind(this)}>
           Save Record
         </button>
+        <div value={this.props.recipe_book}></div>
+        
       </div>
     );
   }
